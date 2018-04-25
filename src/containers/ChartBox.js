@@ -1,4 +1,5 @@
 import React from "react";
+import ChartList from "../components/ChartList.js";
 
 class ChartBox extends React.Component {
   constructor(props) {
@@ -11,12 +12,13 @@ class ChartBox extends React.Component {
   componentDidMount() {
     fetch("https://itunes.apple.com/gb/rss/topsongs/limit=20/json")
       .then(response => response.json())
-      .then(json => this.setState({tunes: json.feed.entry}));
+        .then(json => this.setState({tunes: json.feed.entry}))
+      // .then(json => console.log(json.feed.entry));
   }
 
   render() {
     return (
-      <p>Chart Box</p>
+      <ChartList topTwenty={this.state.tunes}/>
     )
   }
 
